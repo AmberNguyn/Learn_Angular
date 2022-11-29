@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="row">
+    <button
+  class="btn btn-primary"
+  [disabled] ="!allowNewServer"
+>Create new</button>
+
+<p>{{allowNewServer}}</p>
+<p [innerText]="allowNewServer"></p>
+
+<hr>
+<button
+  class="btn btn-primary"
+  (click)="onCreateServer()"
+>Click to create server</button>
+
+
+<hr>
+<label>Type something in the box</label>
+<input
+  type="text"
+  class="form-control"
+  (input)="onUpdateServerName($event)"
+>
+
+<input
+  type="text"
+  class="form-control"
+  [(ngModel)] = "serverName"
+>
+<!-- <p>{{ serverCreationStatus }}</p> -->
+<p *ngIf="serverCreated">Server was created. Server name is {{serverName}}</p>
+
+<p>{{serverName}}</p>
+
+<app-server *ngFor = "let server of servers"></app-server>
+
+
+<p>"================ASSIGNMENT 2 - PRACTICE DATA BINDING=============</p>
+
+<label >Enter your user name: </label><br>
+<input
+  type="text"
+  [(ngModel)] = "username"
+>
+
+<p>{{username}}</p>
+
+<button
+    class="btn btn-primary"
+    [disabled] = "username === '' "
+    (click)="onReset()"
+>Reset</button>
+
+<br>
+<p>"================ASSIGNMENT 3 - PRACTICE DATA BINDING=============</p>
+<br>
+
+<!-- <button
+    class="btn btn-success"
+    (click) = "isShow = !isShow"
+>Display detail</button> -->
+
+<button
+    class="btn btn-success"
+    (click) = "onShow()"
+>Display detail</button>
+
+<p *ngIf = "isShow">{{myParagraph}}</p>
+
+<p>Number of click times: {{count}}</p>
+<p
+*ngFor = "let times of clickTimes"
+[ngStyle] = "{backgroundColor : times < 5 ? 'red' : 'black'}"
+[ngClass] = "{lines : times >= 5 }"
+>{{times}}</p>
+
+<!-- ======== USING TIMESTAMP ========== -->
+<button
+    class="btn btn-success"
+    (click) = "onShowTimeStamp()"
+>Display detail</button>
+
+<p *ngIf = "isShow">{{myParagraph}}</p>
+
+<p
+*ngFor = "let logItem of logTimeStamp, let i = index"
+[ngStyle] = "{backgroundColor : i < 5 ? 'red' : 'black'}"
+[ngClass] = "{lines : i >= 5 }"
+>{{logItem}}</p>
+
+
+  </div>
+</div>
